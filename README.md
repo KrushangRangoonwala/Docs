@@ -18,3 +18,12 @@ YOUR TABLE
 </details>
 
 This site was built using [GitHub Pages](https://pages.github.com/).
+
+### Code block
+```javascript
+let a= 12;
+function myFunc(){
+  return "My first code block "
+}
+```
+

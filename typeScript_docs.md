@@ -1,4 +1,4 @@
-/* 
+
 superset of JavaScript.
 
 Why use TypeScript : https://www.typescripttutorial.net/typescript-tutorial/why-typescript/
@@ -471,4 +471,3 @@ I don't know differenc between 'viod' and 'never'
 
 Mainly use never type when function throw Error
 
-*/

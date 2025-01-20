@@ -1,26 +1,28 @@
 
-superset of JavaScript.
+### It's superset of JavaScript.
 
-Why use TypeScript : https://www.typescripttutorial.net/typescript-tutorial/why-typescript/
-two main reasons :
+#### Why use TypeScript : [TypeScript](https://www.typescripttutorial.net/typescript-tutorial/why-typescript/)
+**two main reasons** :
 1) TypeScript adds a type system to help you avoid many problems with dynamic types in JavaScript.
 2) TypeScript implements the future features of JavaScript a.k.a ES Next that doesn't run by js file but u can use that features in ts file.
 
 TypeScript code compiled in plain JavaScript code using a TypeScript compiler. Know we can run that js file1
 All JavaScript programs are TypeScript programs.
 
-Setup:
+---
+### Setup:
 Node.js is the environment that will run js file
 TypeScript compiler – a Node.js module that compiles TypeScript into JavaScript.
-vs cofde
+vs code
 
 Install TypeScript compiler:
+```
 npm install -g typescript
 tsc --v
 Version 5.5.3
-
-Install tsx module : directlt run js file  
-npm install -g tsx
+```
+Install tsx module for directly run ts file  
+`npm install -g tsx`
 
 TypeScript code compiled in plain JavaScript code using a TypeScript compiler. Know we can run that js file1
 1) app.ts file -> cmd : tsc app.ts -> create app.js file -> cmd : node app.js -> got output 
@@ -29,32 +31,33 @@ if u change .js file created by tscript compiler, u will lose your changes when 
 2) app.ts file -> cmd : tsx app.ts -> got output 
 
 ex.,
+```javascript
 let box;
 console.log(typeof(box)); // undefined
 box = "Hello";
 console.log(typeof(box)); // string
 box = 100;
 console.log(typeof(box)); // number
-
+```
+-----
 Types in TypeScript
 1) Primitive types.
-    -string
-    -number
-    -boolean
-    -null
-    -undefined
-    -symbol : Represent a unique constant value.
+    + string
+    + number
+    + boolean
+    + null
+    + undefined
+    + symbol : Represent a unique constant value.
 
 2) Object types.
     -functions, arrays, classes, etc.
 
->> Type Annotation in TypeScript
+## Type Annotation in TypeScript
 to specify explicit types for identifiers such as variables, functions, objects, etc.
 
-syntax:
-let variableName: type = value;
+syntax:    `let variableName: type = value;`
 
-
+```javascript
 let counter: number;
 counter = 1;
 counter = 'Hello'; // compile error : "Type '"Hello"' is not assignable to type 'number'."
@@ -62,18 +65,18 @@ counter = 'Hello'; // compile error : "Type '"Hello"' is not assignable to type 
 let name: string = 'John';
 let active: boolean = true;
 
-For array : syntax 
+// For array : syntax 
 let arrayName: type[];
 
 let names: string[] = ['John', 'Jane', 'Peter', 'David', 'Mary'];
 
-for Object syntax :
+// for Object syntax :
 let person: {
   name: string;
   age: number;
 };
 
-For Function : syntax
+// For Function : syntax
 let greeting : (name: number) => string;  // argument type: number && function  return type : string
 
 greeting = function (name: string) {
@@ -84,46 +87,49 @@ greeting = function () {
     console.log('Hello');
 };      // not valid : parameter type is not void && function return type is not void                          
 // error : Type '() => void' is not assignable to type '(name: string) => string'. Type 'void' is not assignable to type 'string'.
+```
 
-
->> Type Inference : when we don't assign type then compiler dynamically assign typeby our specified value
-
+## Type Inference : when we don't assign type then compiler dynamically assign typeby our specified value
+```javascript
 let price = 9.95;     // compiler allocate price varible type : number 
 
 function increment(counter=10) {
     return counter++;
 }
-//function argument inferce(adopt) type : number
-//similarlly, function return value inferce(adopt) type : number 
-//Here we don't need to specify type in our code.
+```
+function argument inferce(adopt) type : number
+similarlly, function return value inferce(adopt) type : number 
+Here we don't need to specify type in our code.
 
-Type annotations : You explicitly tell TypeScript the type
-Type inference : TypeScript guesses the type	
+> **Type annotations** : You explicitly tell TypeScript the type
 
->> type :
-numbers :
+> **Type inference** : TypeScript guesses the type	
+
+## types :
+### numbers :
+```javascript
 let price: number;
 let price = 9.95;
-
-note - avaScript has the Number type (with the letter N in uppercase) that refers to the non-primitive boxed object. You should not use this Number type as much as possible in TypeScript. 
-
+```
+> note - JavaScript has the Number type (with the letter N in uppercase) that refers to the non-primitive boxed object. You should not use this Number type as much as possible in TypeScript. 
+```javascript
 let big: bigint = 9007199254740991n;  // represent the whole numbers larger than 253 – 1
 //A Big integer literal has the n character at the end of an integer literal like this:
+```
 
->> object type
-
+### object type
 The TypeScript object type represents all values that are not in primitive types.
 
 primitive types in TypeScript:
- -number
- -bigint
- -string
- -boolean
- -null
- -undefined
- -symbol
+ - number
+ - bigint
+ - string
+ - boolean
+ - null
+ - undefined
+ - symbol
 
-```
+```javascript
 let employee: object;
 employee = {
     firstName: 'John',
@@ -136,42 +142,41 @@ console.log(employee);
 If you attempt to access a non_existing property in object, you’ll get an error
 in javascript it shows `undefined`
 
-note - `The object type represents all non-primitive values while the Object type describes the functionality of all objects.`
+> note - The object type represents all non-primitive values while the Object type describes the functionality of all objects.
 
 
---
-empty type {}
+
+#### empty type {}
 The empty type {} describes an object that has no property on its own. If you try to access a property on such an object, TypeScript will issue a compile-time error:
-```
+```javascript
 let vacant: {};
 vacant.firstName = 'John';
 Error : error TS2339: Property 'firstName' does not exist on type '{}'.
 ```
 
-***
-But you can access all properties and methods declared on the Object type, which is available on the object via the prototype chain:
+> But you can access all properties and methods declared on the Object type, which is available on the object via the prototype chain:
 
+```javascript
 let vacant: {} = {};
 console.log(vacant.toString());
-
-Output:
-[object Object]
-***
-
-Summary : 
- -The TypeScript object type represents any value that is not a primitive value.
- -The Object type, however, describes functionality that is available on all objects.
- -The empty type {} refers to an object that has no property on its own.
-
-optional property :
 ```
+Output:```
+[object Object]```
+
+***Summary*** : 
+ - The TypeScript object type represents any value that is not a primitive value.
+ - The Object type, however, describes functionality that is available on all objects.
+ - The empty type {} refers to an object that has no property on its own.
+
+#### optional property :
+```javascript
 const car: { type: string, mileage?: number } = { // no error
 type: "Toyota"
 };
 car.mileage = 2000;
 ```
 
-Index Signatures :
+#### Index Signatures :
 It can be used for objects that have not defined list of properties.
 
 ```
@@ -181,22 +186,27 @@ nameAgeMap.Mark = "Fifty"; // Error: Type 'string' is not assignable to type 'nu
 ```
 
 
->> Array Type
-
+### Array Type
+```javascript
 let skills: string[] = [];
 skills[0] = "Problem Solving";
 skills[1] = "Programming";
+```
 
--> Storing values of mixed types
-let scores = ['Programming', 5, 'Software Design', 4]; 
+Storing values of mixed types
+```javascript
+let scores = ['Programming', 5, 'Software Design', 4];
+```
 
 In this case, TypeScript infers the scores array as an array of string | number. It’s equivalent to the following:
+```javascript
 let scores : (string | number)[];
 scores = ['Programming', 5, 'Software Design', 4]; 
-
->> unknown type: TypeScript checks the type before performing operations on it.
-syntax : let result: unknown;
 ```
+
+### unknown type: TypeScript checks the type before performing operations on it.
+syntax : ```let result: unknown;```
+```javascript
 let result: unknown;
 
 result = 1;
@@ -207,6 +217,7 @@ result = { name: 'John' };
 result = [1, 2, 3];
 ```
 
+```javascript
 let result: unknown;
 result = [1,2,3];
 
@@ -214,15 +225,16 @@ const total = result.reduce((a: number, b:number ) => a + b, 0); //  its type is
 
 const total = (result as number[]).reduce((a: number, b: number) => a + b, 0);  // will run >> type assertion used
 console.log(total);  //6
+```
 
-https://www.typescripttutorial.net/typescript-tutorial/typescript-unknown-type/  "Unknown vs Any" type take ss
+["Unknown vs Any" Scroll down](https://www.typescripttutorial.net/typescript-tutorial/typescript-unknown-type/)  
 
->> Tuple :  like an array with some additional charactaristics
-no of elements in tuple is fixed.
-types of elements are known, and need not be the same.
+### Tuple :  like an array with some additional charactaristics
++ no of elements in tuple is fixed.
++ types of elements are known, and need not be the same.
 ex.,
 
-```
+```javascript
 // define our tuple
 let ourTuple: [number, boolean, string];
 // initialize correctly
@@ -250,7 +262,7 @@ const graph: [number, number] = [55.2, 41.3];
 const [x, y] = graph;
 ```
 
->> Enum : https://www.typescripttutorial.net/typescript-tutorial/typescript-enum/
+### Enum : [enum](https://www.typescripttutorial.net/typescript-tutorial/typescript-enum/)
 An enum is a group of named constant values.
 ```
 enum name {constant1, constant2, ...};
@@ -258,8 +270,12 @@ enum name {constant1, constant2, ...};
 
 enums will initialize the first value to 0 and add 1 to each additional value:
 
-1) Numeric Enums - Default
-```
+<details>
+    
+<summary>    
+1) Numeric Enums - Default</summary>
+
+```javascript
 enum CardinalDirections {
   North,
   East,
@@ -269,9 +285,13 @@ enum CardinalDirections {
 let currentDirection = CardinalDirections.North;
 console.log(currentDirection);  // logs 0
 ```
+</details>
 
-2) Numeric Enums - Initialized
-```
+<details>
+    <summary>  
+2) Numeric Enums - Initialized</summary>
+    
+```javascript
 enum CardinalDirections {
   North = 2,
   East,
@@ -281,9 +301,12 @@ enum CardinalDirections {
 console.log(CardinalDirections.North); // logs 2
 console.log(CardinalDirections.West);  // logs 5
 ```
+</details>
 
-3)  Fully Initialized
-```
+<details><summary>  
+3)  Fully Initialized</summary>
+    
+```javascript
 enum StatusCodes {
   NotFound = 404,
   Success = 200,
@@ -293,9 +316,11 @@ enum StatusCodes {
 console.log(StatusCodes.NotFound);  // logs 404
 console.log(StatusCodes.Success);  // logs 200
 ```
-
-4) String Enums
-```
+</details>
+<details><summary>  
+4) String Enums</summary>
+    
+```javascript
 enum CardinalDirections {
   North = 'North',
   East = "East",
@@ -305,11 +330,12 @@ enum CardinalDirections {
 console.log(CardinalDirections.North);  // logs "North"
 console.log(CardinalDirections.West);  // logs "West"
 ```
+</details>
 
->> any : when we don't predict datatype of variable then "any" used 
+### any : when we don't predict datatype of variable then "any" used 
 unpredictable value may come from a third-party API or user input.
 
-```
+```javascript
 let result: any;
 
 result = 1;
@@ -323,25 +349,25 @@ const total = result.reduce((a: number, b: number) => a + b, 0);
 console.log(total);
 ```
 
-> void : it denotes the absence of having any type at all. Typically, you use the void type as the return type of functions that do not return a value.
-```
+### void : it denotes the absence of having any type at all. Typically, you use the void type as the return type of functions that do not return a value.
+```javascript
 function log(message): void {
     console.log(messsage);
     }
 ```
 
-note - whose function's return type is "void", that func we cannot assign to varibale
+> note - whose function's return type is "void", that func we cannot assign to varibale
 
->> union : to store a value of one or several types in a variable  or function.
+### union : to store a value of one or several types in a variable  or function.
 
-```
+```javascript
 let result: number | string;
 result = 10; // OK
 result = 'Hi'; // also OK
 result = false; // a boolean value, NOT OK
 ```
 
-```
+```javascript
 function add(a: number | string, b: number | string) :  number | string {
     if (typeof a === 'number' && typeof b === 'number') {
         return a + b;
@@ -353,15 +379,15 @@ function add(a: number | string, b: number | string) :  number | string {
 }
 ```
 
->> type aliases : to define new names for existing types.
+### type aliases : to define new names for existing types.
 
-syntax :
-type alias = existingType;
+syntax :    `
+type alias = existingType;`
 
-Type alias examples
+Type alias examples :
 
 1) Primitive types
-```
+```javascript
 type Name: string;
 
 let firstName: Name;
@@ -370,7 +396,7 @@ let lastName: Name;
 
 2) Object types
 
-```
+```javascript
 type Person = {
   name: string;
   age: number;
@@ -385,7 +411,7 @@ let person: Person = {
 3) Union Types 
 Creating reusable types that can be used in many places in the codebase.
 
-```
+```javascript
 type alphanumeric = string | number;
 
 let input: alphanumeric;
@@ -396,7 +422,7 @@ input = false; // Compiler error
 
 4) Intersection Types
 
-```
+```javascript
 type Personal = {
   name: string;
   age: number;
@@ -417,19 +443,19 @@ let candidate: Candidate = {
 };
 ```
 
->> String Literal Types : 
+### String Literal Types : 
 The string literal type is useful to limit a possible string value that a variable can store.
 
 syntax :
-```
+```javascript
 let click: 'onclick'; 
 click = 'onclick'  // valid
 click = 'dbclick'  //  compiler error
 ```
-we cannot assign any other string to 'click' varible 
+- Here, we cannot assign any other string to 'click' varible 
 we can only asign 'onclick' to click varible
 
-```
+```javascript
 let mouseEvent: 'click' | 'dblclick' | 'mouseup' | 'mousedown';
 mouseEvent = 'click'; // valid
 mouseEvent = 'dblclick'; // valid
@@ -437,24 +463,27 @@ mouseEvent = 'mouseup'; // valid
 mouseEvent = 'mousedown'; // valid
 mouseEvent = 'mouseover'; // compiler error
 ```
-we can only assign given 4 values to 'click' varible . 
-4 values are : 'click' | 'dblclick' | 'mouseup' | 'mousedown';
-if we assign any other string to 'mouseEvent' varible, it gives compile time error 
+- we can only assign given 4 values to 'click' varible . 
+- 4 values are : 'click' | 'dblclick' | 'mouseup' | 'mousedown';
+- if we assign any other string to 'mouseEvent' varible, it gives compile time error 
 
-another syntax : 
+**Another syntax** : 
+```javascript
 type Role = 'admin' | 'user';
+```
 Role that can be either a string 'admin' or 'user', it cannot contain any other value .
 
->> never Type : 
+### never Type : 
 never type is a type that holds no value
 
-```
+case 1 : 
+```javascript
 let empty: never = 'hello';  // Type 'string' is not assignable to type 'never'
 ```
 
 
 case 2 : 
-```
+```javascript
 type Alphanumeric = string & number; // never
 ```
 here, 'Alphanumeric' have both types, a string and a number at the same time, which is impossible:
@@ -462,12 +491,11 @@ So, TypeScript compiler infers the type of Alphanumeric as never.
 
 case 3 :
 Use never type as function return type ,When function doesn't return any thing
-```
+```javascript
 function raiseError(message: string): never {
     throw new Error(message);
 }
 ```
-I don't know differenc between 'viod' and 'never'
-
-Mainly use never type when function throw Error
+I don't know differenc between `'void'` and `'never'`
+Mainly use never type when function throw `Error`
 
